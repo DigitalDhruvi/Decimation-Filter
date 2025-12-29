@@ -1,4 +1,12 @@
 `timescale 1ns / 1fs
+/* FIR filter implementation on FPGA
+ * Module: common testbench for the combined filter
+ * Description:
+ * The input signal is the output of Delta Sigma Modulator from MATLAB provided in the form of a text file
+ *
+ * Engineer: Dhruvi A
+ * Date: 30/12/25
+ */
 
 module tb_chain;
 
