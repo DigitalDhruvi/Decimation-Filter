@@ -1,3 +1,14 @@
+/* FIR filter implementation on FPGA
+ * Module: 10th Order Halfband Filter 
+ * Description:
+ * This module implements the structure of the second stage filter in our chain using coefficients generated in MATLAB
+ * Cuttoff frequency of 2 MHz, with 36.8 dB stopband attenuation and 0.00175 dB ripple in the passband
+ * The input signal is the output of cic generated in the form of a text file
+ *
+ * Engineer: Dhruvi A
+ * Date: 30/12/25
+ */
+
 module hbf1 (
     input clk,
     input rst,
