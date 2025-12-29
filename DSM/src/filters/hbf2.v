@@ -1,4 +1,13 @@
-`timescale 1ns / 1ps
+/* FIR filter implementation on FPGA
+ * Module: 6th Order Halfband Filter 
+ * Description:
+ * This module implements the structure of the second stage filter in our chain using coefficients generated in MATLAB
+ * Cuttoff frequency of 2 MHz, with 25.5 dB stopband attenuation and 0.00251 dB ripple in the passband
+ * The input signal is the output of first halfband filter generated in the form of a text file
+ *
+ * Engineer: Dhruvi A
+ * Date: 30/12/25
+ */
 
 module hbf2 (
     input clk,
