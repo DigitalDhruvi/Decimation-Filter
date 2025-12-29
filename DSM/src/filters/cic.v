@@ -1,3 +1,14 @@
+/* FIR filter implementation on FPGA
+ * Module: first cascaded integrator comb section
+ * Description:
+ * This module implements the the behaviour of the first stage (sinc filter) in our chain 
+ * Cuttoff frequency of 2 MHz, with 40 dB stopband attenuation and 0.00135 dB ripple in the passband
+ * The input signal is the output of Delta Sigma Modulator from MATLAB provided in the form of a text file
+ *
+ * Engineer: Dhruvi A
+ * Date: 30/12/25
+ */
+
 module cic (
     input signed [1:0] in,
     input rst,
