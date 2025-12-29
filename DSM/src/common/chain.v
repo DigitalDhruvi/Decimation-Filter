@@ -1,6 +1,11 @@
-`timescale 1ns / 1ps
+/* FIR filter implementation on FPGA
+ * Module: Decimation Chain: CIC -> HBF1 -> HBF2 = 128x total decimation
+ * Description:
+ * Combines all three modules cic.v hbf1.v hbf2.v
+ * Engineer: Dhruvi A
+ * Date: 30/12/25
+ */
 
-// Decimation Chain: CIC -> HBF1 -> HBF2 = 128x total decimation
 module chain (
     input clk,
     input rst,
