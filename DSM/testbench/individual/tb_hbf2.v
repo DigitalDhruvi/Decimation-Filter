@@ -1,5 +1,12 @@
 `timescale 1ns / 1ps
-
+/* FIR filter implementation on FPGA
+ * Module: testbench for the 6th order halfband filter
+ * Description:
+ * The input signal is the output of hbf1 filter from verilog generated while running the tb
+ *
+ * Engineer: Dhruvi A
+ * Date: 30/12/25
+ */
 module tb_hbf2;
 
 reg clk, rst;
