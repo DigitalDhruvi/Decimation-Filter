@@ -1,15 +1,20 @@
+%% MATLAB Code to generate DSM Output int he form of -1 and 1s 
+%% Followed by 3 cascaded filters and calculating Power Spectral Density
+%% And calculation of SNR 
+% Engineer: Dhruvi A
+% Date: July 2025
 v = load('chain_output.txt');
 %Variables
-fs = 256e6;           %Sampling frequency (Hz)
-OSR = 128;           %Oversampling ratio
-fb = fs/(2*OSR);    %Signal bandwidth
-N = 2^16;           %Number of samples
-t = (0:2*N)/fs;     %Time vector
+fs =  %Sampling frequency (Hz)
+OSR = %Oversampling ratio
+fb = %Signal bandwidth
+N = %Number of samples
+t = %Time vector
 
 %Input signal parameters
-fin = (23*fs)/N;         %Input frequency (within signal band)
+fin = %Input frequency (within signal band)
 f_tone=fin;
-x = 0.5*sin(2*pi*fin*t); %Input signal
+x = %Input signal
 %% PSD after Filter + decimation
 delay=20;
 [Pxx, fxx] = pwelch(v(1+delay:N/OSR+delay),hanning(N/OSR,'periodic'),1, N/OSR, fs/OSR, 'onesided');
