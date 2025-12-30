@@ -1,14 +1,23 @@
-%Variables
-fs = 256e6;           %Sampling frequency (Hz)
-OSR = 128;           %Oversampling ratio
-fb = fs/(2*OSR);    %Signal bandwidth
-N = 2^16;           %Number of samples
-t = (0:2*N)/fs;     %Time vector
+% Creating a Delta-Sigma Modulator and Filter Chain for the given specs:
+% Bandwidth = 2MHz
+% Oversampling ratio = 128
+% sampling frequency 256MHz 
+% SNR should be atleast 90dB
+% Droop < 1dB 
+% Engineer: Dhruvi A
+% Date: 30/12/25
+
+% Your Variable Values according to specification
+fs = %Sampling frequency (Hz) ;
+OSR = %Oversampling ratio ;
+fb = %Signal bandwidth ;
+N = %Number of samples ;
+t = %Time vector ;
 
 %Input signal parameters
-fin = (23*fs)/N;         %Input frequency (within signal band)
+fin = %Input frequency (within signal band);
 
-x = 0.5*sin(2*pi*fin*t); %Input signal
+x = %Input signal;
 ntf=synthesizeNTF(4,128,0,1.5,0);
 [a,g,b,c] = realizeNTF(ntf,'CRFB');
 ABCD = stuffABCD(a,g,b,c,'CRFB');
@@ -19,7 +28,7 @@ fprintf(fid,'%d\n',v);
 writematrix(v','dsm_output.txt');
 %Power spectral density
 [Pxx, f] = pwelch(v, hanning(N,'periodic'),1, N, fs, 'onesided');
-Pxx_dB = 10*log10(Pxx*0.73*N);
+Pxx_dB = 10*log10(Pxx);
 %semilogx(f, Pxx_dB, 'b-', 'LineWidth', 1);
 figure;
 plot(f, Pxx_dB); grid on;
@@ -63,8 +72,9 @@ noise_bins_d = [Pyy(2:tone_idx_d-2); Pyy(tone_idx_d+2:256)];
 
 snr_sinc_dB = 10*log10(sum(signal_bins_d) / sum(noise_bins_d));
 fprintf('Estimated output SNR after SINC = %.2f dB\n', snr_sinc_dB);
+
 %% HFB1 filter definition
-%First halfband filter
+% First halfband filter
 % Note - If I use a 6th order halfband filter, the SNR degradation is >2dB
 % for any value of attenuation. So I went for 10th order. Also if the
 % passband ripple should be <0.05dB then stop-band attenuation had to be
@@ -166,13 +176,16 @@ droop_dB2 = 20*log10(gain_DC2 / gain_edge2);
 fprintf('Passband droop for HBF2 = %.5f dB\n', droop_dB2);
 
 figure;
-%plot(fyy, Pyy_dB); grid on;
+
 semilogx(Pyy_dB); grid on;
 hold on;
+
 semilogx(Ph1_dB); grid on;
 hold on; 
+
 semilogx(Ph2_dB); grid on;
 hold off; 
+
 xlabel('Frequency (Hz)'); ylabel('Power (dB)');
 title('FILTER RESPONSE');
 legend('SINC Output', 'HBF1 Output', 'HBF2 Output');
